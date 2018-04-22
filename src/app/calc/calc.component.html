@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      
+<form action="/action_page.php">
+  <div class="form-group">
+    <label for="email">Number </label>
+<input type="text"
+    [(ngModel)] = "number1"
+    id="inputEmail"
+    name="Number1"
+    placeholder="Number 1">
+  </div>
+
+  <div class="form-group">
+    <label for="pwd">Number:</label>
+  <input type="text"
+    [(ngModel)] = "number2"
+    id="inputEmail"
+    name="email"
+    placeholder="Number 2">
+  </div>
+  {{number1*1 + number2*1 }}
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+    </div>
+  </div>
+</div>
+
