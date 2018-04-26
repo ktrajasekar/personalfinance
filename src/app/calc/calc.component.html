@@ -1,27 +1,54 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-6">
+  <div class="row user-form">
+    <div class="col-sm-6 col-md-offset-3">
       
-<form action="/action_page.php">
-  <div class="form-group">
-    <label for="email">Number </label>
-<input type="text"
-    [(ngModel)] = "number1"
+<form #expencesForm = "ngForm">
+
+ <div class="form-group">
+
+  <input type="text"
+    [(ngModel)] = "expencesDate"
     id="inputEmail"
-    name="Number1"
-    placeholder="Number 1">
+    name="date"
+    placeholder="date">
   </div>
 
   <div class="form-group">
-    <label for="pwd">Number:</label>
+
   <input type="text"
-    [(ngModel)] = "number2"
+    [(ngModel)] = "expencesUser"
+    id="inputEmail"
+    name="user"
+    placeholder="user">
+  </div>
+
+  <div class="form-group">
+  <select   [(ngModel)] = "model.categoryListItem" name="category" >
+    <option *ngFor="let list of categoryList" [value]="list">{{list}}</option>
+  </select>
+  </div>
+
+    <div class="form-group">
+    <label for="amount"></label>
+  <input type="text"
+    [(ngModel)] = "model.expencesAmount"
+    id="inputEmail"
+    name="amount"
+    placeholder="amount">
+  </div>
+
+    <div class="form-group">
+    <label for="amount"></label>
+  <input type="otherNotes"
+    [(ngModel)] = "expencesOtherNotes"
     id="inputEmail"
     name="email"
-    placeholder="Number 2">
+    placeholder="otherNotes">
   </div>
-  {{number1*1 + number2*1 }}
-  <button type="submit" class="btn btn-default">Submit</button>
+<pre>{{ expencesForm.value | json }} </pre>
+
+
+  <button type="submit" class="btn btn-default" [disabled]= "!expencesForm.form.valid">Submit</button>
 </form>
 
     </div>
