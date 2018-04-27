@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MangodataService } from '../mangodata.service'
 
 
 
@@ -27,12 +27,16 @@ export class CalcComponent implements OnInit {
     'Food & Groceries',
     'Others'
   ];
-  constructor() { 
+  posts: any = [];
+  constructor(private postsService: MangodataService) { 
 
   }
 
   ngOnInit() {
-
+  
+this.postsService.getAllposts().subscribe(posts => {
+      this.posts = posts;
+    });
   }
 
 }
