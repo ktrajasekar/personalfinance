@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes  } from '@angular/router';
 import { ROUTING } from './app.routing';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { MangodataService } from './mangodata.service'
 
@@ -24,7 +24,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
   imports: [
     BrowserModule,
     ROUTING,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [MangodataService],
   bootstrap: [AppComponent]

@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class MangodataService {
 
-  constructor(private http: HttpClientModule) { }
+  constructor(private http: Http) {
+
+   }
 
 
   getAllposts()
 {
-	return this.http.get('/api/posts')
+	return this.http.get('http://localhost:3000/api/posts')
 	.map(res => res.json());
 }
 }
