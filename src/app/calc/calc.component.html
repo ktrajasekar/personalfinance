@@ -2,12 +2,12 @@
   <div class="row user-form">
     <div class="col-sm-6 col-md-offset-3">
       
-<form #expencesForm = "ngForm">
-
+<form #expencesForm = "ngForm" (ngSubmit)="expensesSubmit(expencesForm)">
+<fieldset ngModelGroup="expenses"> 
  <div class="form-group">
 
   <input type="text"
-    [(ngModel)] = "expencesDate"
+    [(ngModel)] = "model.expensesDate"
     id="inputEmail"
     name="date"
     placeholder="date">
@@ -16,14 +16,15 @@
   <div class="form-group">
 
   <input type="text"
-    [(ngModel)] = "expencesUser"
+    [(ngModel)] = "model.expensesUser"
     id="inputEmail"
     name="user"
     placeholder="user">
   </div>
 
   <div class="form-group">
-  <select   [(ngModel)] = "model.categoryListItem" name="category" >
+  <select   [(ngModel)] = "model.categoryList" name="category" >
+    <option value="">Please select a category</option>
     <option *ngFor="let list of categoryList" [value]="list">{{list}}</option>
   </select>
   </div>
@@ -31,7 +32,7 @@
     <div class="form-group">
     <label for="amount"></label>
   <input type="text"
-    [(ngModel)] = "model.expencesAmount"
+    [(ngModel)] = "model.expensesAmount"
     id="inputEmail"
     name="amount"
     placeholder="amount">
@@ -40,13 +41,13 @@
     <div class="form-group">
     <label for="amount"></label>
   <input type="otherNotes"
-    [(ngModel)] = "expencesOtherNotes"
+    [(ngModel)] = "model.expensesOtherNotes"
     id="inputEmail"
-    name="email"
+    name="otherNotes"
     placeholder="otherNotes">
   </div>
 <pre>{{ expencesForm.value | json }} </pre>
-
+ </fieldset>
 
   <button type="submit" class="btn btn-default" [disabled]= "!expencesForm.form.valid">Submit</button>
 </form>

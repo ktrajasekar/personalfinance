@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import { NgForm } from '@angular/forms';  
+import 'rxjs/add/operator/map';
+
 import { MangodataService } from '../mangodata.service'
-
-
 
 class expenses {
 constructor(
-public expencesDate: string = '',
-public expencesUser : string= '',
-public expencesAmount: string= '',
-public categoryList: string= ''
-
+public expensesDate: string = '',
+public expensesUser : string= '',
+public expensessAmount: string= '',
+public categoryList: string= '',
+public expensesOtherNotes: string =''
 ){}
 }
 
@@ -28,15 +30,19 @@ export class CalcComponent implements OnInit {
     'Others'
   ];
   posts: any = [];
-  constructor(private postsService: MangodataService) { 
-
-  }
+  url: string='';
+  constructor(private postsService: MangodataService, private http:Http) {}
 
   ngOnInit() {
   
 this.postsService.getAllposts().subscribe(posts => {
       this.posts = posts;
     });
+  }
+  expensesSubmit(expencesForm:NgForm){
+ 	console.log(expencesForm.value);  
+ 	this.url = '';
+ 	this.postsService.postData(this.url, expencesForm.value);
   }
 
 }
