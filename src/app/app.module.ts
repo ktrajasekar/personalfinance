@@ -4,7 +4,7 @@ import { RouterModule, Routes  } from '@angular/router';
 import { ROUTING } from './app.routing';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { MangodataService } from './mangodata.service'
+import { MongodataService } from './mongodata.service'
 
 
 // Components
@@ -27,7 +27,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     FormsModule,
     HttpModule
   ],
-  providers: [MangodataService],
+  providers: [MongodataService],
   bootstrap: [AppComponent]
 })
 

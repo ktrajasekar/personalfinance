@@ -10,7 +10,7 @@ const httpOptions = {
 };
 
 @Injectable()
-export class MangodataService {
+export class MongodataService {
 
   constructor(private http: Http) {}
 
@@ -21,7 +21,8 @@ export class MangodataService {
 }
 
 postData(url, body){
-	return this.http.post(url + body, httpOptions);
+	return this.http.post(url + body, httpOptions)
+	.map(res => res.json());
 }
 
 }

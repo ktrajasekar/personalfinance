@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';  
 import 'rxjs/add/operator/map';
 
-import { MangodataService } from '../mangodata.service'
+import { MongodataService } from '../mongodata.service'
 
 class expenses {
 constructor(
@@ -31,7 +31,7 @@ export class CalcComponent implements OnInit {
   ];
   posts: any = [];
   url: string='';
-  constructor(private postsService: MangodataService, private http:Http) {}
+  constructor(private postsService: MongodataService, private http:Http) {}
 
   ngOnInit() {
   
