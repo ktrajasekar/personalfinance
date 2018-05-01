@@ -5,10 +5,14 @@
 <form #expencesForm = "ngForm" (ngSubmit)="expensesSubmit(expencesForm)">
 <fieldset ngModelGroup="expenses"> 
  <div class="form-group">
+<input type="hidden" name="id"
+    [(ngModel)] = "expensesID"
+    id="expensesID"
+    name="id">
 
   <input type="text"
     [(ngModel)] = "model.expensesDate"
-    id="inputEmail"
+    id="expensesDate"
     name="date"
     placeholder="date">
   </div>
@@ -17,7 +21,7 @@
 
   <input type="text"
     [(ngModel)] = "model.expensesUser"
-    id="inputEmail"
+    id="expensesUser"
     name="user"
     placeholder="user">
   </div>
@@ -33,7 +37,7 @@
     <label for="amount"></label>
   <input type="text"
     [(ngModel)] = "model.expensesAmount"
-    id="inputEmail"
+    id="expensesAmount"
     name="amount"
     placeholder="amount">
   </div>

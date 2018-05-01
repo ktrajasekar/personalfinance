@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';  
 import 'rxjs/add/operator/map';
+import { UUID } from 'angular2-uuid';
 
 import { MongodataService } from '../mongodata.service'
 
@@ -9,9 +10,10 @@ class expenses {
 constructor(
 public expensesDate: string = '',
 public expensesUser : string= '',
-public expensessAmount: string= '',
+public expensesAmount: string= '',
 public categoryList: string= '',
-public expensesOtherNotes: string =''
+public expensesOtherNotes: string ='',
+//public expensesID: string = ''
 ){}
 }
 
@@ -31,17 +33,17 @@ export class CalcComponent implements OnInit {
   ];
   posts: any = [];
   url: string='';
+  public expensesID: string;
   constructor(private postsService: MongodataService, private http:Http) {}
 
   ngOnInit() {
-  
-this.postsService.getAllposts().subscribe(posts => {
-      this.posts = posts;
-    });
+   this.expensesID = UUID.UUID();
+// this.postsService.getAllposts().subscribe(posts => {
+//       this.posts = posts;
+//     });
   }
   expensesSubmit(expencesForm:NgForm){
  	console.log(expencesForm.value);  
- 	this.url = '';
  	this.postsService.postData(this.url, expencesForm.value);
   }
 
