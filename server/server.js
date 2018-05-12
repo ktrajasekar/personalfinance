@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 // Get our API routes
 const api = require('./api');
@@ -9,6 +10,7 @@ const api = require('./api');
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'dist')));

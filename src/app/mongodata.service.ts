@@ -21,8 +21,8 @@ export class MongodataService {
 }
 
 postData(url, body){
-	return this.http.post(url + body, httpOptions)
-	.map(res => res.json());
+	return this.http.post(url, body)
+	.subscribe((data) => {});
 }
 
 }

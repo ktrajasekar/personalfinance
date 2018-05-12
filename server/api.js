@@ -1,28 +1,65 @@
 const express = require('express');
 const router = express.Router();
+const config = require('./config.js')
 
 const axios = require('axios');
 const MongoClient = require('mongodb').MongoClient;
-
 const API = 'https://jsonplaceholder.typicode.com';
-const mongodbURL = 'mongodb://financedb:hIRN7WahaqPSja0d@cluster0-shard-00-00-dxyij.mongodb.net:27017,cluster0-shard-00-01-dxyij.mongodb.net:27017,cluster0-shard-00-02-dxyij.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin';
+const mongodbURL = config.mangoDBURL;
+
 router.get('/', (req, res) => {
-	res.send('api works');
-	      MongoClient.connect(mongodbURL, function(err, db) {
-              console.log("Connected Database ----------------  Rock Started");
-              db.close();
+	     //  MongoClient.connect(mongodbURL, function(err, db) {
+      //         console.log("Connected Database ----------------  Rock Started");
+      //         db.close();
+      // });
 });
+
+router.post('/create', (req, res) => {
+           var formdata = req.body;
+
+
+MongoClient.connect('mongodbURL', function (err, client) {
+  if (err) throw err;
+  
+  var db = client.db('personalfinance-raj');
+
+  db.collection('userFinanceDetails').findOne({}, function (findErr, result) {
+    if (findErr) throw findErr;
+    console.log(result);
+    client.close();
+  });
+});
+
+
+//   MongoClient.connect(mongodbURL, (err, client) => {
+//     if(err){
+//       console.log(err)
+//     }
+//     if(client){
+//       console.log(client.collection);
+//      var collectionName = 'userFinanceDetails';
+//     var collection = client.collection(collectionName);
+//           collection.insertOne(formdata, function(err, res){
+//                   if (err) throw err;
+//                   console.log(result.name);
+//                    client.close();
+//            });
+//     }
+
+//   // var dbs = client.db('personalfinance-raj');
+  
+//   //         dbs.collection('userFinanceDetails').insertOne(formdata, function(err, res){
+//   //                 if (err) throw err;
+//   //                 console.log(result.name);
+//   //                  client.close();
+//   //          });
+
+// });
+
 });
 
 router.get('/posts', (req, res) => {
-	console.log(req)
-  // Get posts from the mock api
-  // This should ideally be replaced with a service that connects to MongoDB
- 
-var uri = "mongodb://financedb:hIRN7WahaqPSja0d@cluster0-shard-00-00-dxyij.mongodb.net:27017,cluster0-shard-00-01-dxyij.mongodb.net:27017,cluster0-shard-00-02-dxyij.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
-
-
-
+	console.log(req);
   axios.get(`${API}/posts`)
     .then(posts => {
 
@@ -31,7 +68,6 @@ var uri = "mongodb://financedb:hIRN7WahaqPSja0d@cluster0-shard-00-00-dxyij.mongo
     .catch(error => {
       res.status(500).send(error)
     });
-
 });
 
 module.exports = router;

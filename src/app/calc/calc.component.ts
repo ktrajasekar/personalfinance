@@ -44,7 +44,9 @@ export class CalcComponent implements OnInit {
   }
   expensesSubmit(expencesForm:NgForm){
  	console.log(expencesForm.value);  
+      this.url = 'http://localhost:3000/api/create';
  	this.postsService.postData(this.url, expencesForm.value);
+     this.http.post("http://localhost:3000/api/create", expencesForm.value).subscribe((data) => {});
   }
 
 }
